@@ -5,7 +5,7 @@ Servo benwoodServo;
 int fowardWheel = 2;
 int backwardWheel = 3;
 
-int motor = 6;
+int motor = 6; //test
 
 void setup()
 { 
