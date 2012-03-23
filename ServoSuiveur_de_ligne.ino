@@ -73,7 +73,7 @@ void loop()
    
    if(ValeurNoire > MaxValeur-50)
      {
-       servo = map(ValeurNoire, MaxValeur-50, MaxValeur, 85, 95);
+       servo = map(ValeurNoire, MaxValeur-50, MaxValeur, 85, 95);//attention kevin, la nom de variable servo n'est pas recommande
        myservo.write(servo);
       delay(150); 
      }
