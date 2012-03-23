@@ -1,30 +1,40 @@
-#include <Servo.h>
-
-Servo myservo; 
-
-int extremeDroite = A5,
-    droite = A4,
-    centreDroite = A3,
-    centreGauche = A2,
-    gauche = A1,
-    extremeGauche = A0 ,
+//----Initialisation du servo----
+#include <Servo.h> 
+Servo benwoodServo;
+//----Initialisation des pins moteurs----
+int fowardWheel = 2;
+int backwardWheel = 3;
+int motor = 6;
+//----Initialisation des sensors + valeurs----
+int extremeDroite = A5, val_ED,
+    droite = A4, val_D,
+    centreDroite = A3, val_CD,
+    centreGauche = A2, val_CG,
+    gauche = A1, val_G,
+    extremeGauche = A0, val_EG,
     MaxValeur,
     MinValeur,
     ValeurNoire,
     ValeurBlanche,
     servo;
 
-
+//----------------------------------
 void setup()
-{
+{ 
+  //----servo----
+  benwoodServo.attach(10);
+  benwoodServo.write(90);
+  //----motor----
+  pinMode(fowardWheel, OUTPUT);
+  pinMode(backwardWheel, OUTPUT);
+  pinMode(motor, OUTPUT);
+  //----sensors----
   pinMode(extremeDroite , INPUT);
   pinMode(droite, INPUT);
   pinMode(centreDroite, INPUT);
   pinMode(centreGauche, INPUT);
   pinMode(gauche, INPUT);
   pinMode(extremeGauche, INPUT);
-  
-  myservo.attach(10);
   
   ValeurNoire=(analogRead(centreDroite)+analogRead(centreGauche))/2;
   MaxValeur=ValeurNoire;
@@ -33,10 +43,21 @@ void setup()
   
   Serial.begin(9600);
 }
-
+//----------------------------------
+void foward() //avant
+{  
+  digitalWrite(fowardWheel, HIGH);
+  digitalWrite(backwardWheel, LOW);
+  return;
+}
+void backward() //arriere
+{
+  digitalWrite(backwardWheel, HIGH);
+  digitalWrite(fowardWheel, LOW);
+  return;
+}
 void loop()
 {
-  
 //  int val_ED = analogRead(extremeDroite);
 //  int val_D = analogRead(droite);
   int val_CD = analogRead(centreDroite);
@@ -74,7 +95,7 @@ void loop()
    if(ValeurNoire > MaxValeur-50)
      {
        servo = map(ValeurNoire, MaxValeur-50, MaxValeur, 85, 95);//attention kevin, la nom de variable servo n'est pas recommande
-       myservo.write(servo);
+       benwoodServo.write(servo);
       delay(150); 
      }
      
