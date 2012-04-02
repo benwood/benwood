@@ -58,12 +58,12 @@ void backward() //arriere
 }
 void loop()
 {
-//  int val_ED = analogRead(extremeDroite);
-//  int val_D = analogRead(droite);
+  int val_ED = analogRead(extremeDroite);
+  int val_D = analogRead(droite);
   int val_CD = analogRead(centreDroite);
   int val_CG = analogRead(centreGauche);
-//  int val_G = analogRead(gauche);
-//  int val_EG = analogRead(extremeGauche);
+  int val_G = analogRead(gauche);
+  int val_EG = analogRead(extremeGauche);
   
   ValeurNoire=(analogRead(centreDroite)+analogRead(centreGauche))/2;  
   ValeurBlanche=(analogRead(droite)+analogRead(gauche))/2;
@@ -97,7 +97,5 @@ void loop()
        servo = map(ValeurNoire, MaxValeur-50, MaxValeur, 85, 95);//attention kevin, la nom de variable servo n'est pas recommande
        benwoodServo.write(servo);
       delay(150); 
-     }
-     
-     
+     }     
 }
