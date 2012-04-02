@@ -1,4 +1,4 @@
-//----Initialisation du servo----
+//----Initialisation du notreServo----
 #include <Servo.h> 
 Servo benwoodServo;
 //----Initialisation des pins moteurs----
@@ -16,12 +16,12 @@ int extremeDroite = A5, val_ED,
     MinValeur,
     ValeurNoire,
     ValeurBlanche,
-    servo;
+    notreServo;
 
 //----------------------------------
 void setup()
 { 
-  //----servo----
+  //----notreServo----
   benwoodServo.attach(10);
   benwoodServo.write(90);
   //----motor----
@@ -94,8 +94,8 @@ void loop()
    
    if(ValeurNoire > MaxValeur-50)
      {
-       servo = map(ValeurNoire, MaxValeur-50, MaxValeur, 85, 95);//attention kevin, la nom de variable servo n'est pas recommande
-       benwoodServo.write(servo);
+       notreServo = map(ValeurNoire, MaxValeur-50, MaxValeur, 85, 95);//attention kevin, la nom de variable servo n'est pas recommande EDIT: Problème réglé. (Gabriel)
+       benwoodServo.write(notreServo);
       delay(150); 
      }     
 }
